@@ -1,7 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import { useQuery, gql } from '@apollo/client';
+import { useEffect } from 'react';
 
 function App() {
+
+
+  const GET_BOOKS = gql`
+  query GetBooks {
+    books {
+      id,
+      name,
+      authors{
+        name
+      }
+    }
+  }
+`;
+
+
+
+
+const { loading, error, data } = useQuery(GET_BOOKS);
+  console.log(data)
+
+
   return (
     <div className="App">
       <header className="App-header">
